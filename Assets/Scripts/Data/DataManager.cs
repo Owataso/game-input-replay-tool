@@ -10,7 +10,7 @@ namespace Data
         /// <summary>
         /// 落としていくノーツのリスト
         /// </summary>
-        public List<INote> NoteList;
+        public List<NoteData> NoteList;
 
         /// <summary>
         /// 自身の実体
@@ -38,7 +38,7 @@ namespace Data
         /// </summary>
         public DataManager()
         {
-
+            NoteList = new List<NoteData>();
         }
     }
 }

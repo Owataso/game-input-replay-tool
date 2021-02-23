@@ -1,87 +1,58 @@
 ﻿namespace Data
 {
     /// <summary>
-    /// キー入力種別
+    /// 入力種別
+    /// </summary>
+    public enum GameInputType
+    {
+        /// <summary>各種ボタン（方向キー含）</summary>
+        Button = 0,
+
+        /// <summary>左スティック</summary>
+        LeftStick = 1,
+
+        /// <summary>右スティック</summary>
+        RightStick = 2
+    }
+
+    /// <summary>
+    /// 画面に表示するキー入力としての情報
     /// ここでは見た目上の観点からノーツと定義する
     /// </summary>
-    public enum NoteType
-    {
-        /// <summary>通常ノーツ</summary>
-        Normal,
-
-        /// <summary>ロングノーツ(開始)</summary>
-        LongStart,
-
-        /// <summary>ロングノーツ(終了)</summary>
-        LongEnd
-    }
-
-    /// <summary>
-    /// キー入力情報インターフェース
-    /// </summary>
-    public interface INote
-    {
-        /// <summary>発火時間</summary>
-        int EventTime { get; }
-
-        /// <summary>レーン番号</summary>
-        int LaneIndex { get; }
-    }
-
-    /// <summary>
-    /// 通常ノーツ
-    /// </summary>
-    public class NormalNote : INote
+    public class NoteData
     {
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public NormalNote()
+        public NoteData(int eventTime, GameInputType inputType, int laneIndex, int pressRate)
         {
+            EventTime = eventTime;
+            InputType = inputType;
+            LaneIndex = laneIndex;
+            PressRate = pressRate;
         }
 
-        /// <summary>発火時間</summary>
-        public int EventTime { get; private set; }
-
-        /// <summary>レーン番号</summary>
-        public int LaneIndex { get; private set; }
-    }
-
-    /// <summary>
-    /// ロングノーツ(開始)
-    /// </summary>
-    public class LongNoteStart : INote
-    {
         /// <summary>
-        /// コンストラクタ
+        /// 発火時間
         /// </summary>
-        public LongNoteStart()
-        {
-        }
-
-        /// <summary>発火時間</summary>
         public int EventTime { get; private set; }
 
-        /// <summary>レーン番号</summary>
-        public int LaneIndex { get; private set; }
-    }
-
-    /// <summary>
-    /// ロングノーツ(終了)
-    /// </summary>
-    public class LongNoteEnd : INote
-    {
         /// <summary>
-        /// コンストラクタ
+        /// 入力種別（ボタン or スティック）
         /// </summary>
-        public LongNoteEnd()
-        {
-        }
+        public GameInputType InputType {  get; private set; }
 
-        /// <summary>発火時間</summary>
-        public int EventTime { get; private set; }
-
-        /// <summary>レーン番号</summary>
+        /// <summary>
+        /// 降ってくるレーン番号
+        /// ボタン系の場合は各ボタンの種別ごとに割り振られたIDとして扱う
+        /// スティック系の場合、0～10000として時計回りで管理（例：2500…右, 5000…下, 7500…左）
+        /// </summary>
         public int LaneIndex { get; private set; }
+
+        /// <summary>
+        /// 押下の割合（万分率）
+        /// 主に0,1による押し離しやスティック系の倒し度合を表現するために用いる
+        /// </summary>
+        public int PressRate { get; private set; }
     }
 }
