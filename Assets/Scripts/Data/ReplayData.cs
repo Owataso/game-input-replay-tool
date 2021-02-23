@@ -16,6 +16,68 @@
     }
 
     /// <summary>
+    /// ボタン種別
+    /// 命名はDualShock4と順番は下記サイトを参考
+    /// https://nanmo.hateblo.jp/entry/2014/02/23/000000
+    /// </summary>
+    public enum BUttonType
+    {
+        /// <summary>方向キー上</summary>
+	    Up = 0,
+
+        /// <summary>方向キー下</summary>
+	    Down = 1,
+
+        /// <summary>方向キー左</summary>
+	    Left = 2,
+
+        /// <summary>方向キー右</summary>
+	    Right = 3,
+
+        /// <summary>□ボタン</summary>
+	    Square = 4,
+
+        /// <summary>×ボタン</summary>
+	    Cross = 5,
+
+        /// <summary>○ボタン</summary>
+	    Circle = 6,
+
+        /// <summary>△ボタン</summary>
+	    Triangle = 7,
+
+        /// <summary>L1</summary>
+	    L1 = 8,
+
+        /// <summary>R1</summary>
+	    R1 = 9,
+
+        /// <summary>L2</summary>
+	    L2 = 10,
+
+        /// <summary>R2</summary>
+	    R2 = 11,
+
+        /// <summary>Share</summary>
+        Share = 12,
+
+        /// <summary>Option</summary>
+	    Option = 13,
+
+        /// <summary>左スティック押し込み</summary>
+	    L3 = 14,
+
+        /// <summary>右スティック押し込み</summary>
+	    R3 = 15,
+
+        /// <summary>PSボタン</summary>
+	    PsButton = 16,
+
+        /// <summary>トラックパッドクリック</summary>
+	    TrackPad = 17
+    }
+
+    /// <summary>
     /// 画面に表示するキー入力としての情報
     /// ここでは見た目上の観点からノーツと定義する
     /// </summary>
